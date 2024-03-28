@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Annonces;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AnnoncesController extends Controller
 {
@@ -18,8 +18,7 @@ class AnnoncesController extends Controller
             'user_id'=>'nullable',
             'competences'=>'nullable',
         ]);
-
-       $annonces= Annonces::create([
+       $annonce= Annonces::create([
             'user_id'=>$request->input('user_id'),
             'titre'=>$request->input('titre'),
             'description'=>$request->input('description') ,
@@ -30,8 +29,24 @@ class AnnoncesController extends Controller
            ]);
 
         return response()->json([
-            'message' => 'annonces successfully created',
-            'annonces' => $annonces
+            'message' => 'annonce successfully created',
+            'annonce' => $annonce
         ], 201); ;
     }
+
+    public function destroy(Annonces $annonce)
+    {
+            $annonce->delete();
+            return response()->json([
+                "message" => "annonce deleted successfully",
+            ], 201);
+    }
+
+    public function annonces()
+    {
+        $annonce = Annonces::get();
+        return response()->json($annonce);
+    }
+
 }
+

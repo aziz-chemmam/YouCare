@@ -18,5 +18,6 @@ use App\Http\Controllers\AnnoncesController;
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);    
-
     Route::post('/annonces',[AnnoncesController::class, 'create_annonces']);
+    Route::get('/annonce',[AnnoncesController::class, 'annonces']);
+    Route::delete('/delete/{annonce}',[AnnoncesController::class, 'destroy']);

@@ -3,6 +3,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AnnoncesController;
+use App\Http\Controllers\BenevoleController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,7 +19,11 @@ use App\Http\Controllers\AnnoncesController;
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user-profile', [AuthController::class, 'userProfile']);    
+    Route::get('/user-profile', [AuthController::class, 'userProfile']); 
+    
+    
     Route::post('/annonces',[AnnoncesController::class, 'create_annonces']);
     Route::get('/annonce',[AnnoncesController::class, 'annonces']);
     Route::delete('/delete/{annonce}',[AnnoncesController::class, 'destroy']);
+
+    Route::post('/benevole',[BenevoleController::class,'benevole']);
